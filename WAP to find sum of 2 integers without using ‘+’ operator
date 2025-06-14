@@ -1,0 +1,19 @@
+#include <iostream>
+
+int add(int a, int b) {
+    while (b != 0) {
+        int carry = a & b;  // Calculate the carry bits
+        a = a ^ b;         // Sum without considering carry
+        b = carry << 1;   // Shift carry to the left for next iteration
+    }
+    return a;
+}
+
+int main() {
+    int num1, num2;
+    std::cout << "Enter two integers: ";
+    std::cin >> num1 >> num2;
+    int sum = add(num1, num2);
+    std::cout << "Sum = " << sum << std::endl;
+    return 0;
+}
