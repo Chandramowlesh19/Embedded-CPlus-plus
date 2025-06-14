@@ -1,0 +1,17 @@
+#include <iostream>
+
+int main() {
+    int a = 10;
+    int b = 5;
+
+    std::cout << "Before swapping: a = " << a << ", b = " << b << std::endl;
+
+    // Swap using addition and subtraction
+    a = a + b;
+    b = a - b;
+    a = a - b;
+
+    std::cout << "After swapping: a = " << a << ", b = " << b << std::endl;
+
+    return 0;
+}
