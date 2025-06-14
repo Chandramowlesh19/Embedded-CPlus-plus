@@ -1,0 +1,77 @@
+#include <iostream>
+#include <string>
+
+class BasicInfo {
+public:
+    char name[20];
+    int empId;
+    char gender;
+
+    BasicInfo(const char* n = "", int id = 0, char g = ' ') : empId(id), gender(g) {
+        if (n) {
+            strncpy(name, n, 19);
+            name[19] = '\0';
+        }
+    }
+
+    void getBasicInfo() {
+        std::cout << "Name: " << name << std::endl;
+        std::cout << "Emp ID: " << empId << std::endl;
+        std::cout << "Gender: " << gender << std::endl;
+    }
+};
+
+class DeptInfo {
+public:
+    char deptName[30];
+    char assignedWork[30];
+    int timeToComplete;
+
+    DeptInfo(const char* dn = "", const char* aw = "", int t = 0) : timeToComplete(t) {
+        if (dn) {
+            strncpy(deptName, dn, 29);
+            deptName[29] = '\0';
+        }
+        if (aw) {
+            strncpy(assignedWork, aw, 29);
+            assignedWork[29] = '\0';
+        }
+    }
+
+    void getDeptInfo() {
+        std::cout << "Department Name: " << deptName << std::endl;
+        std::cout << "Assigned Work: " << assignedWork << std::endl;
+        std::cout << "Time to Complete: " << timeToComplete << " hours" << std::endl;
+    }
+};
+
+class Employee {
+public:
+    BasicInfo basicInfo;
+    DeptInfo deptInfo;
+
+    Employee(const BasicInfo& bi, const DeptInfo& di) : basicInfo(bi), deptInfo(di) {}
+
+    void displayEmployeeInfo() {
+        basicInfo.getBasicInfo();
+        deptInfo.getDeptInfo();
+    }
+};
+
+int main() {
+    Employee employees[5] = {
+        {{"John Doe", 123, 'm'}, {"Sales", "Sales report", 5}},
+        {{"Jane Smith", 456, 'f'}, {"Marketing", "Campaign design", 10}},
+        {{"Peter Jones", 789, 'm'}, {"Engineering", "Product development", 20}},
+        {{"Mary Brown", 101, 'f'}, {"HR", "Recruitment", 8}},
+        {{"David Lee", 222, 'm'}, {"Finance", "Budget analysis", 15}}
+    };
+
+    for (int i = 0; i < 5; ++i) {
+        std::cout << "Employee " << i + 1 << ":" << std::endl;
+        employees[i].displayEmployeeInfo();
+        std::cout << std::endl;
+    }
+
+    return 0;
+}
